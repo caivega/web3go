@@ -64,7 +64,7 @@ func main() {
 
 	}()
 
-	fmt.Printf("Filter ID: ％v\n", filter.ID())
+	fmt.Println("Filter ID: ", filter.ID())
 
 	if filterCh := filter.Watch(); filterCh != nil {
 		for {
