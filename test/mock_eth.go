@@ -33,8 +33,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/alanchchen/web3go/common"
-	"github.com/alanchchen/web3go/rpc"
+	"github.com/caivega/web3go/common"
+	"github.com/caivega/web3go/rpc"
 )
 
 // MockEthAPI ...

@@ -35,7 +35,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/alanchchen/web3go/common"
+	"github.com/caivega/web3go/common"
 )
 
 var (
@@ -71,13 +71,13 @@ func (opt *FilterOption) String() string {
 // Filter ...
 type Filter interface {
 	Watch() WatchChannel
-	ID() uint64
+	ID() string
 }
 
 type baseFilter struct {
 	eth        Eth
 	filterType FilterType
-	filterID   uint64
+	filterID   string
 }
 
 // WatchChannel ...
@@ -95,7 +95,7 @@ type watchChannel struct {
 // Filter
 
 // newFilter creates a filter object, based on filter options and filter id.
-func newFilter(eth Eth, filterType FilterType, id uint64) Filter {
+func newFilter(eth Eth, filterType FilterType, id string) Filter {
 	return &baseFilter{
 		eth:        eth,
 		filterType: filterType,
@@ -137,7 +137,7 @@ func (f *baseFilter) Watch() WatchChannel {
 }
 
 // ID returns the filter identifier
-func (f *baseFilter) ID() uint64 {
+func (f *baseFilter) ID() string {
 	return f.filterID
 }
 

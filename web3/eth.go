@@ -35,8 +35,8 @@ import (
 	"math/big"
 	"strconv"
 
-	"github.com/alanchchen/web3go/common"
-	"github.com/alanchchen/web3go/rpc"
+	"github.com/caivega/web3go/common"
+	"github.com/caivega/web3go/rpc"
 )
 
 // Eth ...
@@ -743,10 +743,7 @@ func (eth *EthAPI) NewFilter(option *FilterOption) (Filter, error) {
 		return nil, resp.Error()
 	}
 
-	id, err := strconv.ParseUint(common.HexToString(resp.Get("result").(string)), 16, 64)
-	if err != nil {
-		return nil, err
-	}
+	id := resp.Get("result").(string)
 	return newFilter(eth, TypeNormal, id), nil
 }
 
@@ -763,10 +760,7 @@ func (eth *EthAPI) NewBlockFilter() (Filter, error) {
 		return nil, resp.Error()
 	}
 
-	id, err := strconv.ParseUint(common.HexToString(resp.Get("result").(string)), 16, 64)
-	if err != nil {
-		return nil, err
-	}
+	id := resp.Get("result").(string)
 	return newFilter(eth, TypeBlockFilter, id), nil
 }
 
@@ -784,10 +778,7 @@ func (eth *EthAPI) NewPendingTransactionFilter() (Filter, error) {
 		return nil, resp.Error()
 	}
 
-	id, err := strconv.ParseUint(common.HexToString(resp.Get("result").(string)), 16, 64)
-	if err != nil {
-		return nil, err
-	}
+	id := resp.Get("result").(string)
 	return newFilter(eth, TypeTransactionFilter, id), nil
 }
 
@@ -796,7 +787,7 @@ func (eth *EthAPI) NewPendingTransactionFilter() (Filter, error) {
 // requested with eth_getFilterChanges for a period of time.
 func (eth *EthAPI) UninstallFilter(filter Filter) (bool, error) {
 	req := eth.requestManager.newRequest("eth_uninstallFilter")
-	req.Set("params", fmt.Sprintf("0x%x", filter.ID()))
+	req.Set("params", filter.ID())
 	resp, err := eth.requestManager.send(req)
 	if err != nil {
 		return false, err
@@ -813,7 +804,7 @@ func (eth *EthAPI) UninstallFilter(filter Filter) (bool, error) {
 // which occurred since last poll.
 func (eth *EthAPI) GetFilterChanges(filter Filter) (result []interface{}, err error) {
 	req := eth.requestManager.newRequest("eth_getFilterChanges")
-	req.Set("params", fmt.Sprintf("0x%x", filter.ID()))
+	req.Set("params", filter.ID())
 	resp, err := eth.requestManager.send(req)
 	if err != nil {
 		return nil, err
@@ -829,7 +820,7 @@ func (eth *EthAPI) GetFilterChanges(filter Filter) (result []interface{}, err er
 // GetFilterLogs returns an array of all logs matching filter with given id.
 func (eth *EthAPI) GetFilterLogs(filter Filter) (result []interface{}, err error) {
 	req := eth.requestManager.newRequest("eth_getFilterLogs")
-	req.Set("params", fmt.Sprintf("0x%x", filter.ID()))
+	req.Set("params", filter.ID())
 	resp, err := eth.requestManager.send(req)
 	if err != nil {
 		return nil, err
@@ -845,7 +836,7 @@ func (eth *EthAPI) GetFilterLogs(filter Filter) (result []interface{}, err error
 // GetLogs returns an array of all logs matching a given filter object.
 func (eth *EthAPI) GetLogs(filter Filter) (result []interface{}, err error) {
 	req := eth.requestManager.newRequest("eth_getLogs")
-	req.Set("params", fmt.Sprintf("0x%x", filter.ID()))
+	req.Set("params", filter.ID())
 	resp, err := eth.requestManager.send(req)
 	if err != nil {
 		return nil, err

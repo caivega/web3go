@@ -33,8 +33,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/alanchchen/web3go/provider"
-	"github.com/alanchchen/web3go/rpc"
+	"github.com/caivega/web3go/provider"
+	"github.com/caivega/web3go/rpc"
 	"github.com/stretchr/testify/mock"
 )
 

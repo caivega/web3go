@@ -30,7 +30,7 @@
 package provider
 
 import (
-	"github.com/alanchchen/web3go/rpc"
+	"github.com/caivega/web3go/rpc"
 )
 
 // Provider provides basic web3 interface

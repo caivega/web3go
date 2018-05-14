@@ -33,9 +33,9 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/alanchchen/web3go/provider"
-	"github.com/alanchchen/web3go/rpc"
-	"github.com/alanchchen/web3go/web3"
+	"github.com/caivega/web3go/provider"
+	"github.com/caivega/web3go/rpc"
+	"github.com/caivega/web3go/web3"
 )
 
 var hostname = flag.String("hostname", "localhost", "The ethereum client RPC host")
@@ -64,13 +64,15 @@ func main() {
 
 	}()
 
-	fmt.Printf("Filter ID: 0x%x\n", filter.ID())
+	fmt.Printf("Filter ID: ％v\n", filter.ID())
 
 	if filterCh := filter.Watch(); filterCh != nil {
 		for {
 			log, err := filterCh.Next()
 			if err == nil {
 				fmt.Printf("Block: %v\n", log)
+				filterCh.Close()
+				return
 			} else {
 				fmt.Printf("%v\n", err)
 				return

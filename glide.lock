@@ -1,5 +1,5 @@
 hash: 4abc716f7e5f617c7ea16c75586d5dc4f5989d4f4281acac4667462ec3d50e5b
-updated: 2016-06-12T17:53:36.012128208+08:00
+updated: 2018-05-10T10:53:36.556451+08:00
 imports:
 - name: github.com/davecgh/go-spew
   version: 5215b55f46b2b919f50a1df0eaa5886afe4e3b3d
@@ -14,10 +14,12 @@ imports:
 - name: github.com/stretchr/testify
   version: 8d64eb7173c7753d6419fd4a9caf057398611364
   subpackages:
-  - mock
   - assert
+  - mock
+  - require
+  - suite
 - name: github.com/tonnerre/golang-go.crypto
   version: 9bbb332f040b171b2fb4e08c53a3db3b3f6633c0
   subpackages:
   - sha3
-devImports: []
+testImports: []
