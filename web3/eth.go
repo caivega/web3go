@@ -531,7 +531,7 @@ func (eth *EthAPI) GetBlockByHash(hash common.Hash, full bool) (*common.Block, e
 		return nil, resp.Error()
 	}
 
-	result := &jsonBlock{}
+	result := &JSONBlock{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToBlock(), nil
@@ -554,7 +554,7 @@ func (eth *EthAPI) GetBlockByNumber(quantity string, full bool) (*common.Block, 
 		return nil, resp.Error()
 	}
 
-	result := &jsonBlock{}
+	result := &JSONBlock{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToBlock(), nil
@@ -578,7 +578,7 @@ func (eth *EthAPI) GetTransactionByHash(hash common.Hash) (*common.Transaction, 
 		return nil, resp.Error()
 	}
 
-	result := &jsonTransaction{}
+	result := &JSONTransaction{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToTransaction(), nil
@@ -602,7 +602,7 @@ func (eth *EthAPI) GetTransactionByBlockHashAndIndex(hash common.Hash, index uin
 		return nil, resp.Error()
 	}
 
-	result := &jsonTransaction{}
+	result := &JSONTransaction{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToTransaction(), nil
@@ -626,7 +626,7 @@ func (eth *EthAPI) GetTransactionByBlockNumberAndIndex(quantity string, index ui
 		return nil, resp.Error()
 	}
 
-	result := &jsonTransaction{}
+	result := &JSONTransaction{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToTransaction(), nil
@@ -649,7 +649,7 @@ func (eth *EthAPI) GetTransactionReceipt(hash common.Hash) (*common.TransactionR
 		return nil, resp.Error()
 	}
 
-	result := &jsonTransactionReceipt{}
+	result := &JSONTransactionReceipt{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToTransactionReceipt(), nil
@@ -673,7 +673,7 @@ func (eth *EthAPI) GetUncleByBlockHashAndIndex(hash common.Hash, index uint64) (
 		return nil, resp.Error()
 	}
 
-	result := &jsonBlock{}
+	result := &JSONBlock{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToBlock(), nil
@@ -697,7 +697,7 @@ func (eth *EthAPI) GetUncleByBlockNumberAndIndex(quantity string, index uint64) 
 		return nil, resp.Error()
 	}
 
-	result := &jsonBlock{}
+	result := &JSONBlock{}
 	if jsonBytes, err := json.Marshal(resp.Get("result")); err == nil {
 		if err := json.Unmarshal(jsonBytes, result); err == nil {
 			return result.ToBlock(), nil
