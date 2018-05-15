@@ -82,14 +82,14 @@ var (
 // See https://github.com/ethereum/wiki/wiki/JavaScript-API#web3js-api-reference
 type Web3 struct {
 	provider       provider.Provider
-	requestManager *requestManager
+	requestManager *RequestManager
 	Eth            Eth
 	Net            Net
 }
 
 // NewWeb3 creates a new web3 object.
 func NewWeb3(provider provider.Provider) *Web3 {
-	requestManager := newRequestManager(provider)
+	requestManager := NewRequestManager(provider)
 	return &Web3{
 		provider:       provider,
 		requestManager: requestManager,
@@ -110,6 +110,10 @@ func (web3 *Web3) SetProvider(provider provider.Provider) {
 // CurrentProvider returns the current provider.
 func (web3 *Web3) CurrentProvider() provider.Provider {
 	return web3.provider
+}
+
+func (web3 *Web3) CurrentRequestManager() *RequestManager {
+	return web3.requestManager
 }
 
 // Reset state of web3. Resets everything except manager. Uninstalls all
